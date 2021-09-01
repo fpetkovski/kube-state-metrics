@@ -38,6 +38,7 @@ var (
 			"kube_mutatingwebhookconfiguration_info",
 			"Information about the MutatingWebhookConfiguration.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapMutatingWebhookConfigurationFunc(func(mwc *admissionregistrationv1.MutatingWebhookConfiguration) *metric.Family {
 				return &metric.Family{
@@ -53,6 +54,7 @@ var (
 			"kube_mutatingwebhookconfiguration_created",
 			"Unix creation timestamp.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapMutatingWebhookConfigurationFunc(func(mwc *admissionregistrationv1.MutatingWebhookConfiguration) *metric.Family {
 				ms := []*metric.Metric{}
@@ -71,6 +73,7 @@ var (
 			"kube_mutatingwebhookconfiguration_metadata_resource_version",
 			"Resource version representing a specific version of the MutatingWebhookConfiguration.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapMutatingWebhookConfigurationFunc(func(mwc *admissionregistrationv1.MutatingWebhookConfiguration) *metric.Family {
 				return &metric.Family{

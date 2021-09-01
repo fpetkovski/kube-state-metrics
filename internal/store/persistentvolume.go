@@ -49,6 +49,7 @@ func persistentVolumeMetricFamilies(allowAnnotationsList, allowLabelsList []stri
 			descPersistentVolumeClaimRefName,
 			descPersistentVolumeClaimRefHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeFunc(func(p *v1.PersistentVolume) *metric.Family {
 				claimRef := p.Spec.ClaimRef
@@ -79,6 +80,7 @@ func persistentVolumeMetricFamilies(allowAnnotationsList, allowLabelsList []stri
 			descPersistentVolumeAnnotationsName,
 			descPersistentVolumeAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeFunc(func(p *v1.PersistentVolume) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", p.Annotations, allowAnnotationsList)
@@ -97,6 +99,7 @@ func persistentVolumeMetricFamilies(allowAnnotationsList, allowLabelsList []stri
 			descPersistentVolumeLabelsName,
 			descPersistentVolumeLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeFunc(func(p *v1.PersistentVolume) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", p.Labels, allowLabelsList)
@@ -115,6 +118,7 @@ func persistentVolumeMetricFamilies(allowAnnotationsList, allowLabelsList []stri
 			"kube_persistentvolume_status_phase",
 			"The phase indicates if a volume is available, bound to a claim, or released by a claim.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeFunc(func(p *v1.PersistentVolume) *metric.Family {
 				phase := p.Status.Phase
@@ -162,6 +166,7 @@ func persistentVolumeMetricFamilies(allowAnnotationsList, allowLabelsList []stri
 			"kube_persistentvolume_info",
 			"Information about persistentvolume.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeFunc(func(p *v1.PersistentVolume) *metric.Family {
 				var gcePDDiskName, ebsVolumeID, azureDiskName, fcWWIDs, fcLun, fcTargetWWNs, iscsiTargetPortal, iscsiIQN, iscsiLun, iscsiInitiatorName, nfsServer, nfsPath string
@@ -244,6 +249,7 @@ func persistentVolumeMetricFamilies(allowAnnotationsList, allowLabelsList []stri
 			"kube_persistentvolume_capacity_bytes",
 			"Persistentvolume capacity in bytes.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeFunc(func(p *v1.PersistentVolume) *metric.Family {
 				storage := p.Spec.Capacity[v1.ResourceStorage]

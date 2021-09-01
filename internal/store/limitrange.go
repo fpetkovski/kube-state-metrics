@@ -38,6 +38,7 @@ var (
 			"kube_limitrange",
 			"Information about limit range.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapLimitRangeFunc(func(r *v1.LimitRange) *metric.Family {
 				ms := []*metric.Metric{}
@@ -93,6 +94,7 @@ var (
 			"kube_limitrange_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapLimitRangeFunc(func(r *v1.LimitRange) *metric.Family {
 				ms := []*metric.Metric{}

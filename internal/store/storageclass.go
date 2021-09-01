@@ -44,6 +44,7 @@ func storageClassMetricFamilies(allowAnnotationsList, allowLabelsList []string) 
 			"kube_storageclass_info",
 			"Information about storageclass.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStorageClassFunc(func(s *storagev1.StorageClass) *metric.Family {
 
@@ -68,6 +69,7 @@ func storageClassMetricFamilies(allowAnnotationsList, allowLabelsList []string) 
 			"kube_storageclass_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStorageClassFunc(func(s *storagev1.StorageClass) *metric.Family {
 				ms := []*metric.Metric{}
@@ -85,6 +87,7 @@ func storageClassMetricFamilies(allowAnnotationsList, allowLabelsList []string) 
 			descStorageClassAnnotationsName,
 			descStorageClassAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStorageClassFunc(func(s *storagev1.StorageClass) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", s.Annotations, allowAnnotationsList)
@@ -103,6 +106,7 @@ func storageClassMetricFamilies(allowAnnotationsList, allowLabelsList []string) 
 			descStorageClassLabelsName,
 			descStorageClassLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStorageClassFunc(func(s *storagev1.StorageClass) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", s.Labels, allowLabelsList)

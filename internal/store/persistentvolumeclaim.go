@@ -44,6 +44,7 @@ func persistentVolumeClaimMetricFamilies(allowAnnotationsList, allowLabelsList [
 			descPersistentVolumeClaimLabelsName,
 			descPersistentVolumeClaimLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeClaimFunc(func(p *v1.PersistentVolumeClaim) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", p.Annotations, allowAnnotationsList)
@@ -62,6 +63,7 @@ func persistentVolumeClaimMetricFamilies(allowAnnotationsList, allowLabelsList [
 			"kube_persistentvolumeclaim_info",
 			"Information about persistent volume claim.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeClaimFunc(func(p *v1.PersistentVolumeClaim) *metric.Family {
 				storageClassName := getPersistentVolumeClaimClass(p)
@@ -81,6 +83,7 @@ func persistentVolumeClaimMetricFamilies(allowAnnotationsList, allowLabelsList [
 			"kube_persistentvolumeclaim_status_phase",
 			"The phase the persistent volume claim is currently in.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeClaimFunc(func(p *v1.PersistentVolumeClaim) *metric.Family {
 				phase := p.Status.Phase
@@ -120,6 +123,7 @@ func persistentVolumeClaimMetricFamilies(allowAnnotationsList, allowLabelsList [
 			"kube_persistentvolumeclaim_resource_requests_storage_bytes",
 			"The capacity of storage requested by the persistent volume claim.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeClaimFunc(func(p *v1.PersistentVolumeClaim) *metric.Family {
 				ms := []*metric.Metric{}
@@ -139,6 +143,7 @@ func persistentVolumeClaimMetricFamilies(allowAnnotationsList, allowLabelsList [
 			"kube_persistentvolumeclaim_access_mode",
 			"The access mode(s) specified by the persistent volume claim.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeClaimFunc(func(p *v1.PersistentVolumeClaim) *metric.Family {
 				ms := make([]*metric.Metric, len(p.Spec.AccessModes))
@@ -160,6 +165,7 @@ func persistentVolumeClaimMetricFamilies(allowAnnotationsList, allowLabelsList [
 			"kube_persistentvolumeclaim_status_condition",
 			"Information about status of different conditions of persistent volume claim.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapPersistentVolumeClaimFunc(func(p *v1.PersistentVolumeClaim) *metric.Family {
 				ms := make([]*metric.Metric, len(p.Status.Conditions)*len(conditionStatuses))

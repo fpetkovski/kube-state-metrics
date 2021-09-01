@@ -44,6 +44,7 @@ func namespaceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []g
 			"kube_namespace_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNamespaceFunc(func(n *v1.Namespace) *metric.Family {
 				ms := []*metric.Metric{}
@@ -62,6 +63,7 @@ func namespaceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []g
 			descNamespaceAnnotationsName,
 			descNamespaceAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNamespaceFunc(func(n *v1.Namespace) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", n.Annotations, allowAnnotationsList)
@@ -80,6 +82,7 @@ func namespaceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []g
 			descNamespaceLabelsName,
 			descNamespaceLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNamespaceFunc(func(n *v1.Namespace) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", n.Labels, allowLabelsList)
@@ -98,6 +101,7 @@ func namespaceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []g
 			"kube_namespace_status_phase",
 			"kubernetes namespace status phase.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNamespaceFunc(func(n *v1.Namespace) *metric.Family {
 				ms := []*metric.Metric{
@@ -124,6 +128,7 @@ func namespaceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []g
 			"kube_namespace_status_condition",
 			"The condition of a namespace.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNamespaceFunc(func(n *v1.Namespace) *metric.Family {
 				ms := make([]*metric.Metric, len(n.Status.Conditions)*len(conditionStatuses))

@@ -44,6 +44,7 @@ func networkPolicyMetricFamilies(allowAnnotationsList, allowLabelsList []string)
 			"kube_networkpolicy_created",
 			"Unix creation timestamp of network policy",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNetworkPolicyFunc(func(n *networkingv1.NetworkPolicy) *metric.Family {
 				return &metric.Family{
@@ -61,6 +62,7 @@ func networkPolicyMetricFamilies(allowAnnotationsList, allowLabelsList []string)
 			descNetworkPolicyAnnotationsName,
 			descNetworkPolicyAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNetworkPolicyFunc(func(n *networkingv1.NetworkPolicy) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", n.Annotations, allowAnnotationsList)
@@ -79,6 +81,7 @@ func networkPolicyMetricFamilies(allowAnnotationsList, allowLabelsList []string)
 			descNetworkPolicyLabelsName,
 			descNetworkPolicyLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNetworkPolicyFunc(func(n *networkingv1.NetworkPolicy) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", n.Labels, allowLabelsList)
@@ -97,6 +100,7 @@ func networkPolicyMetricFamilies(allowAnnotationsList, allowLabelsList []string)
 			"kube_networkpolicy_spec_ingress_rules",
 			"Number of ingress rules on the networkpolicy",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNetworkPolicyFunc(func(n *networkingv1.NetworkPolicy) *metric.Family {
 				return &metric.Family{
@@ -114,6 +118,7 @@ func networkPolicyMetricFamilies(allowAnnotationsList, allowLabelsList []string)
 			"kube_networkpolicy_spec_egress_rules",
 			"Number of egress rules on the networkpolicy",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapNetworkPolicyFunc(func(n *networkingv1.NetworkPolicy) *metric.Family {
 				return &metric.Family{

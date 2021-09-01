@@ -40,6 +40,7 @@ var (
 			descVolumeAttachmentLabelsName,
 			descVolumeAttachmentLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapVolumeAttachmentFunc(func(va *storagev1.VolumeAttachment) *metric.Family {
 				labelKeys, labelValues := kubeMapToPrometheusLabels("label", va.Labels)
@@ -58,6 +59,7 @@ var (
 			"kube_volumeattachment_info",
 			"Information about volumeattachment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapVolumeAttachmentFunc(func(va *storagev1.VolumeAttachment) *metric.Family {
 				return &metric.Family{
@@ -75,6 +77,7 @@ var (
 			"kube_volumeattachment_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapVolumeAttachmentFunc(func(va *storagev1.VolumeAttachment) *metric.Family {
 				if !va.CreationTimestamp.IsZero() {
@@ -92,6 +95,7 @@ var (
 			"kube_volumeattachment_spec_source_persistentvolume",
 			"PersistentVolume source reference.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapVolumeAttachmentFunc(func(va *storagev1.VolumeAttachment) *metric.Family {
 				if va.Spec.Source.PersistentVolumeName != nil {
@@ -112,6 +116,7 @@ var (
 			"kube_volumeattachment_status_attached",
 			"Information about volumeattachment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapVolumeAttachmentFunc(func(va *storagev1.VolumeAttachment) *metric.Family {
 				return &metric.Family{
@@ -129,6 +134,7 @@ var (
 			"kube_volumeattachment_status_attachment_metadata",
 			"volumeattachment metadata.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapVolumeAttachmentFunc(func(va *storagev1.VolumeAttachment) *metric.Family {
 				labelKeys, labelValues := mapToPrometheusLabels(va.Status.AttachmentMetadata, "metadata")

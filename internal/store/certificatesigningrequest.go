@@ -44,6 +44,7 @@ func csrMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			descCSRAnnotationsName,
 			descCSRAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusExperimental,
 			"",
 			wrapCSRFunc(func(j *certv1.CertificateSigningRequest) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", j.Annotations, allowAnnotationsList)
@@ -62,6 +63,7 @@ func csrMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			descCSRLabelsName,
 			descCSRLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapCSRFunc(func(j *certv1.CertificateSigningRequest) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", j.Labels, allowLabelsList)
@@ -80,6 +82,7 @@ func csrMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_certificatesigningrequest_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapCSRFunc(func(csr *certv1.CertificateSigningRequest) *metric.Family {
 				ms := []*metric.Metric{}
@@ -100,6 +103,7 @@ func csrMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_certificatesigningrequest_condition",
 			"The number of each certificatesigningrequest condition",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapCSRFunc(func(csr *certv1.CertificateSigningRequest) *metric.Family {
 				return &metric.Family{
@@ -111,6 +115,7 @@ func csrMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_certificatesigningrequest_cert_length",
 			"Length of the issued cert",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapCSRFunc(func(csr *certv1.CertificateSigningRequest) *metric.Family {
 				return &metric.Family{

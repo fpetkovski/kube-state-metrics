@@ -44,6 +44,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				ms := []*metric.Metric{}
@@ -63,6 +64,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_status_replicas",
 			"The number of replicas per StatefulSet.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{
@@ -78,6 +80,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_status_replicas_available",
 			"The number of available replicas per StatefulSet.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{
@@ -93,6 +96,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_status_replicas_current",
 			"The number of current replicas per StatefulSet.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{
@@ -108,6 +112,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_status_replicas_ready",
 			"The number of ready replicas per StatefulSet.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{
@@ -123,6 +128,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_status_replicas_updated",
 			"The number of updated replicas per StatefulSet.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{
@@ -138,6 +144,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_status_observed_generation",
 			"The generation observed by the StatefulSet controller.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{
@@ -153,6 +160,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_replicas",
 			"Number of desired pods for a StatefulSet.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				ms := []*metric.Metric{}
@@ -172,6 +180,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_metadata_generation",
 			"Sequence number representing a specific generation of the desired state for the StatefulSet.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{
@@ -187,6 +196,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			descStatefulSetAnnotationsName,
 			descStatefulSetAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", s.Annotations, allowAnnotationsList)
@@ -205,6 +215,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			descStatefulSetLabelsName,
 			descStatefulSetLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", s.Labels, allowLabelsList)
@@ -223,6 +234,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_status_current_revision",
 			"Indicates the version of the StatefulSet used to generate Pods in the sequence [0,currentReplicas).",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{
@@ -240,6 +252,7 @@ func statefulSetMetricFamilies(allowAnnotationsList, allowLabelsList []string) [
 			"kube_statefulset_status_update_revision",
 			"Indicates the version of the StatefulSet used to generate Pods in the sequence [replicas-updatedReplicas,replicas)",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapStatefulSetFunc(func(s *v1.StatefulSet) *metric.Family {
 				return &metric.Family{

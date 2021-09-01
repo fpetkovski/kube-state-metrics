@@ -47,6 +47,16 @@ var Gauge Type = "gauge"
 // Counter defines a Prometheus counter.
 var Counter Type = "counter"
 
+// MetricStatus is the API status of a metric.
+//
+// It can either Experimental or Stable.
+type MetricStatus string
+
+const (
+	MetricStatusStable       MetricStatus = "Stable"
+	MetricStatusExperimental MetricStatus = "Experimental"
+)
+
 // Metric represents a single time series.
 type Metric struct {
 	// The name of a metric is injected by its family to reduce duplication.

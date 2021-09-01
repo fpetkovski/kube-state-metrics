@@ -46,6 +46,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			descJobAnnotationsName,
 			descJobAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", j.Annotations, allowAnnotationsList)
@@ -64,6 +65,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			descJobLabelsName,
 			descJobLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", j.Labels, allowLabelsList)
@@ -82,6 +84,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_info",
 			"Information about job.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				return &metric.Family{
@@ -97,6 +100,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				ms := []*metric.Metric{}
@@ -116,6 +120,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_spec_parallelism",
 			"The maximum desired number of pods the job should run at any given time.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				ms := []*metric.Metric{}
@@ -135,6 +140,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_spec_completions",
 			"The desired number of successfully finished pods the job should be run with.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				ms := []*metric.Metric{}
@@ -154,6 +160,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_spec_active_deadline_seconds",
 			"The duration in seconds relative to the startTime that the job may be active before the system tries to terminate it.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				ms := []*metric.Metric{}
@@ -173,6 +180,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_status_succeeded",
 			"The number of pods which reached Phase Succeeded.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				return &metric.Family{
@@ -188,6 +196,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_status_failed",
 			"The number of pods which reached Phase Failed and the reason for failure.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				var ms []*metric.Metric
@@ -235,6 +244,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_status_active",
 			"The number of actively running pods.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				return &metric.Family{
@@ -250,6 +260,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_complete",
 			"The job has completed its execution.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				ms := []*metric.Metric{}
@@ -273,6 +284,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_failed",
 			"The job has failed its execution.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				ms := []*metric.Metric{}
@@ -297,6 +309,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_status_start_time",
 			"StartTime represents time when the job was acknowledged by the Job Manager.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				ms := []*metric.Metric{}
@@ -317,6 +330,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_status_completion_time",
 			"CompletionTime represents time when the job was completed.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				ms := []*metric.Metric{}
@@ -336,6 +350,7 @@ func jobMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_job_owner",
 			"Information about the Job's owner.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapJobFunc(func(j *v1batch.Job) *metric.Family {
 				labelKeys := []string{"owner_kind", "owner_name", "owner_is_controller"}

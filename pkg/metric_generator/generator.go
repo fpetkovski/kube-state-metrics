@@ -32,15 +32,24 @@ type FamilyGenerator struct {
 	Help              string
 	Type              metric.Type
 	DeprecatedVersion string
+	MetricStatus      metric.MetricStatus
 	GenerateFunc      func(obj interface{}) *metric.Family
 }
 
 // NewFamilyGenerator creates new FamilyGenerator instances.
-func NewFamilyGenerator(name string, help string, metricType metric.Type, deprecatedVersion string, generateFunc func(obj interface{}) *metric.Family) *FamilyGenerator {
+func NewFamilyGenerator(
+	name string,
+	help string,
+	metricType metric.Type,
+	metricStatus metric.MetricStatus,
+	deprecatedVersion string,
+	generateFunc func(obj interface{}) *metric.Family,
+) *FamilyGenerator {
 	f := &FamilyGenerator{
 		Name:              name,
 		Type:              metricType,
 		Help:              help,
+		MetricStatus:      metricStatus,
 		DeprecatedVersion: deprecatedVersion,
 		GenerateFunc:      generateFunc,
 	}

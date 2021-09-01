@@ -38,6 +38,7 @@ var (
 			"kube_validatingwebhookconfiguration_info",
 			"Information about the ValidatingWebhookConfiguration.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapValidatingWebhookConfigurationFunc(func(vwc *admissionregistrationv1.ValidatingWebhookConfiguration) *metric.Family {
 				return &metric.Family{
@@ -53,6 +54,7 @@ var (
 			"kube_validatingwebhookconfiguration_created",
 			"Unix creation timestamp.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapValidatingWebhookConfigurationFunc(func(vwc *admissionregistrationv1.ValidatingWebhookConfiguration) *metric.Family {
 				ms := []*metric.Metric{}
@@ -71,6 +73,7 @@ var (
 			"kube_validatingwebhookconfiguration_metadata_resource_version",
 			"Resource version representing a specific version of the ValidatingWebhookConfiguration.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapValidatingWebhookConfigurationFunc(func(vwc *admissionregistrationv1.ValidatingWebhookConfiguration) *metric.Family {
 				return &metric.Family{

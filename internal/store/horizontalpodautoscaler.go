@@ -60,6 +60,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_horizontalpodautoscaler_metadata_generation",
 			"The generation observed by the HorizontalPodAutoscaler controller.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				return &metric.Family{
@@ -75,6 +76,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_horizontalpodautoscaler_spec_max_replicas",
 			"Upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				return &metric.Family{
@@ -90,6 +92,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_horizontalpodautoscaler_spec_min_replicas",
 			"Lower limit for the number of pods that can be set by the autoscaler, default 1.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				return &metric.Family{
@@ -105,6 +108,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_horizontalpodautoscaler_spec_target_metric",
 			"The metric specifications used by this autoscaler when calculating the desired replica count.",
 			metric.Gauge,
+			metric.MetricStatusExperimental,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				ms := make([]*metric.Metric, 0, len(a.Spec.Metrics))
@@ -168,6 +172,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_horizontalpodautoscaler_status_current_replicas",
 			"Current number of replicas of pods managed by this autoscaler.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				return &metric.Family{
@@ -183,6 +188,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_horizontalpodautoscaler_status_desired_replicas",
 			"Desired number of replicas of pods managed by this autoscaler.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				return &metric.Family{
@@ -198,6 +204,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			descHorizontalPodAutoscalerAnnotationsName,
 			descHorizontalPodAutoscalerAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusExperimental,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", a.Annotations, allowLabelsList)
@@ -216,6 +223,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			descHorizontalPodAutoscalerLabelsName,
 			descHorizontalPodAutoscalerLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", a.Labels, allowLabelsList)
@@ -234,6 +242,7 @@ func hpaMetricFamilies(allowAnnotationsList, allowLabelsList []string) []generat
 			"kube_horizontalpodautoscaler_status_condition",
 			"The condition of this autoscaler.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapHPAFunc(func(a *autoscaling.HorizontalPodAutoscaler) *metric.Family {
 				ms := make([]*metric.Metric, 0, len(a.Status.Conditions)*len(conditionStatuses))

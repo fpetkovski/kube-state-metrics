@@ -38,6 +38,7 @@ var (
 			"kube_resourcequota_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapResourceQuotaFunc(func(r *v1.ResourceQuota) *metric.Family {
 				ms := []*metric.Metric{}
@@ -58,6 +59,7 @@ var (
 			"kube_resourcequota",
 			"Information about resource quota.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapResourceQuotaFunc(func(r *v1.ResourceQuota) *metric.Family {
 				ms := []*metric.Metric{}

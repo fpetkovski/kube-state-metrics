@@ -44,6 +44,7 @@ func endpointMetricFamilies(allowAnnotationsList, allowLabelsList []string) []ge
 			"kube_endpoint_info",
 			"Information about endpoint.",
 			metric.Gauge,
+			metric.MetricStatusExperimental,
 			"",
 			wrapEndpointFunc(func(e *v1.Endpoints) *metric.Family {
 				return &metric.Family{
@@ -59,6 +60,7 @@ func endpointMetricFamilies(allowAnnotationsList, allowLabelsList []string) []ge
 			"kube_endpoint_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapEndpointFunc(func(e *v1.Endpoints) *metric.Family {
 				ms := []*metric.Metric{}
@@ -79,6 +81,7 @@ func endpointMetricFamilies(allowAnnotationsList, allowLabelsList []string) []ge
 			descEndpointAnnotationsName,
 			descEndpointAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapEndpointFunc(func(e *v1.Endpoints) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", e.Annotations, allowAnnotationsList)
@@ -97,6 +100,7 @@ func endpointMetricFamilies(allowAnnotationsList, allowLabelsList []string) []ge
 			descEndpointLabelsName,
 			descEndpointLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapEndpointFunc(func(e *v1.Endpoints) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", e.Labels, allowLabelsList)
@@ -115,6 +119,7 @@ func endpointMetricFamilies(allowAnnotationsList, allowLabelsList []string) []ge
 			"kube_endpoint_address_available",
 			"Number of addresses available in endpoint.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapEndpointFunc(func(e *v1.Endpoints) *metric.Family {
 				var available int
@@ -135,6 +140,7 @@ func endpointMetricFamilies(allowAnnotationsList, allowLabelsList []string) []ge
 			"kube_endpoint_address_not_ready",
 			"Number of addresses not ready in endpoint",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapEndpointFunc(func(e *v1.Endpoints) *metric.Family {
 				var notReady int

@@ -38,6 +38,7 @@ var (
 			"kube_configmap_info",
 			"Information about configmap.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapConfigMapFunc(func(c *v1.ConfigMap) *metric.Family {
 				return &metric.Family{
@@ -53,6 +54,7 @@ var (
 			"kube_configmap_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapConfigMapFunc(func(c *v1.ConfigMap) *metric.Family {
 				ms := []*metric.Metric{}
@@ -74,6 +76,7 @@ var (
 			"kube_configmap_metadata_resource_version",
 			"Resource version representing a specific version of the configmap.",
 			metric.Gauge,
+			metric.MetricStatusExperimental,
 			"",
 			wrapConfigMapFunc(func(c *v1.ConfigMap) *metric.Family {
 				return &metric.Family{

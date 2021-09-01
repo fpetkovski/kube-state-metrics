@@ -45,6 +45,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusExperimental,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				ms := []*metric.Metric{}
@@ -64,6 +65,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_status_replicas",
 			"The number of replicas per deployment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -79,6 +81,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_status_replicas_ready",
 			"The number of ready replicas per deployment.",
 			metric.Gauge,
+			metric.MetricStatusExperimental,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -94,6 +97,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_status_replicas_available",
 			"The number of available replicas per deployment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -109,6 +113,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_status_replicas_unavailable",
 			"The number of unavailable replicas per deployment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -124,6 +129,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_status_replicas_updated",
 			"The number of updated replicas per deployment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -139,6 +145,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_status_observed_generation",
 			"The generation observed by the deployment controller.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -154,6 +161,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_status_condition",
 			"The current status conditions of a deployment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				ms := make([]*metric.Metric, len(d.Status.Conditions)*len(conditionStatuses))
@@ -179,6 +187,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_spec_replicas",
 			"Number of desired pods for a deployment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -194,6 +203,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_spec_paused",
 			"Whether the deployment is paused and will not be processed by the deployment controller.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -209,6 +219,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_spec_strategy_rollingupdate_max_unavailable",
 			"Maximum number of unavailable replicas during a rolling update of a deployment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				if d.Spec.Strategy.RollingUpdate == nil {
@@ -233,6 +244,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_spec_strategy_rollingupdate_max_surge",
 			"Maximum number of replicas that can be scheduled above the desired number of replicas during a rolling update of a deployment.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				if d.Spec.Strategy.RollingUpdate == nil {
@@ -257,6 +269,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			"kube_deployment_metadata_generation",
 			"Sequence number representing a specific generation of the desired state.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				return &metric.Family{
@@ -272,6 +285,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			descDeploymentAnnotationsName,
 			descDeploymentAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", d.Annotations, allowAnnotationsList)
@@ -290,6 +304,7 @@ func deploymentMetricFamilies(allowAnnotationsList, allowLabelsList []string) []
 			descDeploymentLabelsName,
 			descDeploymentLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapDeploymentFunc(func(d *v1.Deployment) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", d.Labels, allowLabelsList)

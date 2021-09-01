@@ -38,6 +38,7 @@ var (
 			"kube_lease_owner",
 			"Information about the Lease's owner.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapLeaseFunc(func(l *coordinationv1.Lease) *metric.Family {
 				labelKeys := []string{"owner_kind", "owner_name"}
@@ -73,6 +74,7 @@ var (
 			"kube_lease_renew_time",
 			"Kube lease renew time.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapLeaseFunc(func(l *coordinationv1.Lease) *metric.Family {
 				ms := []*metric.Metric{}

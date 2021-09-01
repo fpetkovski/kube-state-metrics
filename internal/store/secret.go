@@ -44,6 +44,7 @@ func secretMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gene
 			"kube_secret_info",
 			"Information about secret.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSecretFunc(func(s *v1.Secret) *metric.Family {
 				return &metric.Family{
@@ -59,6 +60,7 @@ func secretMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gene
 			"kube_secret_type",
 			"Type about secret.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSecretFunc(func(s *v1.Secret) *metric.Family {
 				return &metric.Family{
@@ -76,6 +78,7 @@ func secretMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gene
 			descSecretAnnotationsName,
 			descSecretAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSecretFunc(func(s *v1.Secret) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", s.Annotations, allowAnnotationsList)
@@ -95,6 +98,7 @@ func secretMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gene
 			descSecretLabelsName,
 			descSecretLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSecretFunc(func(s *v1.Secret) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", s.Labels, allowLabelsList)
@@ -114,6 +118,7 @@ func secretMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gene
 			"kube_secret_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSecretFunc(func(s *v1.Secret) *metric.Family {
 				ms := []*metric.Metric{}
@@ -133,6 +138,7 @@ func secretMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gene
 			"kube_secret_metadata_resource_version",
 			"Resource version representing a specific version of secret.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSecretFunc(func(s *v1.Secret) *metric.Family {
 				return &metric.Family{

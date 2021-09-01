@@ -44,6 +44,7 @@ func serviceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gen
 			"kube_service_info",
 			"Information about service.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSvcFunc(func(s *v1.Service) *metric.Family {
 				m := metric.Metric{
@@ -58,6 +59,7 @@ func serviceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gen
 			"kube_service_created",
 			"Unix creation timestamp",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSvcFunc(func(s *v1.Service) *metric.Family {
 				if !s.CreationTimestamp.IsZero() {
@@ -75,6 +77,7 @@ func serviceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gen
 			"kube_service_spec_type",
 			"Type about service.",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSvcFunc(func(s *v1.Service) *metric.Family {
 				m := metric.Metric{
@@ -90,6 +93,7 @@ func serviceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gen
 			descServiceAnnotationsName,
 			descServiceAnnotationsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSvcFunc(func(s *v1.Service) *metric.Family {
 				annotationKeys, annotationValues := createPrometheusLabelKeysValues("annotation", s.Annotations, allowAnnotationsList)
@@ -105,6 +109,7 @@ func serviceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gen
 			descServiceLabelsName,
 			descServiceLabelsHelp,
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSvcFunc(func(s *v1.Service) *metric.Family {
 				labelKeys, labelValues := createPrometheusLabelKeysValues("label", s.Labels, allowLabelsList)
@@ -120,6 +125,7 @@ func serviceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gen
 			"kube_service_spec_external_ip",
 			"Service external ips. One series for each ip",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSvcFunc(func(s *v1.Service) *metric.Family {
 				if len(s.Spec.ExternalIPs) == 0 {
@@ -147,6 +153,7 @@ func serviceMetricFamilies(allowAnnotationsList, allowLabelsList []string) []gen
 			"kube_service_status_load_balancer_ingress",
 			"Service load balancer ingress status",
 			metric.Gauge,
+			metric.MetricStatusStable,
 			"",
 			wrapSvcFunc(func(s *v1.Service) *metric.Family {
 				if len(s.Status.LoadBalancer.Ingress) == 0 {
